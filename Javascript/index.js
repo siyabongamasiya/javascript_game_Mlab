@@ -16,7 +16,7 @@ const images = [
   let lockBoard = false;
   let gameIsPlaying = false
   let seconds = 30;
-  let timerIdInterval 
+  let timerIdInterval = null;
 
 
 
@@ -90,6 +90,11 @@ const images = [
   function startTimer(){
     const timerElement = document.getElementById("timer");
 
+    //not starting the interval if one is running
+    if (timerIdInterval !== null) {
+        return;
+    }
+
     timerIdInterval = setInterval(() => {
         if(gameIsPlaying){
             seconds--;
@@ -101,6 +106,7 @@ const images = [
         if(seconds === 0){
             alert('oopss you ran out of time! Restarting...');
             clearInterval(timerIdInterval)
+            timerIdInterval = null;
             initGame()
         }
         
