@@ -142,16 +142,11 @@ const images = [
   
     //restart when all cards matched
     if (cards.every(card => card.isMatched)) {
-        if (gameoverIdInterval !== null) {
-            return;
-        }
         
-        gameoverIdInterval = setTimeout(() => {
+        setTimeout(() => {
             alert('Game completed! Restarting...');
-            clearInterval(gameoverIdInterval)
             clearInterval(timerIdInterval)
             timerIdInterval = null;
-            gameoverIdInterval = null;
             initGame();
         }, 500);
     }
